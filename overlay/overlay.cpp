@@ -1,8 +1,8 @@
 #include "overlay.h"
 #include "menu.h"
 #include "imgui.h"
-#include "libs/imgui/imgui_impl_android.h"
-#include "libs/imgui/imgui_impl_opengl3.h"
+#include "imgui_impl_android.h"
+#include "imgui_impl_opengl3.h"
 #include <android/log.h>
 #include <chrono>
 
@@ -26,7 +26,7 @@ bool Overlay::init(ANativeWindow* window) {
     io.IniFilename = nullptr;  // No imgui.ini
     
     // ImGui backends
-    ImGui_ImplAndroid_Init();
+    ImGui_ImplAndroid_Init(window);
     ImGui_ImplOpenGL3_Init("#version 100");
     
     // Init mod menu
@@ -172,7 +172,12 @@ bool Overlay::handleTouch(int action, float x, float y, int pointer_count) {
     
     // Pass to ImGui if menu is visible
     if (ModMenu::getInstance().isVisible()) {
-        ImGui_ImplAndroid_HandleTouchEvent(action, x, y, pointer_count);
+        ImGuiIO& io = ImGui::GetIO();
+        io.AddMousePosEvent(x, y);
+        if (action == 0)       // ACTION_DOWN
+            io.AddMouseButtonEvent(0, true);
+        else if (action == 1)  // ACTION_UP
+            io.AddMouseButtonEvent(0, false);
         return true;
     }
     
