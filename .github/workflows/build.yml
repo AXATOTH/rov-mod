@@ -11,6 +11,12 @@ jobs:
         with:
           ndk-version: r26c
 
+      - name: Download zygisk.hpp
+        run: |
+          mkdir -p overlay/libs/zygisk
+          curl -L https://raw.githubusercontent.com/topjohnwu/zygisk-module-sample/master/module/jni/zygisk.hpp \
+               -o overlay/libs/zygisk/zygisk.hpp
+
       - name: Build
         run: |
           mkdir build
@@ -18,7 +24,6 @@ jobs:
           cmake -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
                 -DANDROID_ABI=arm64-v8a \
                 -DANDROID_PLATFORM=android-24 \
-                -DCMAKE_CXX_FLAGS="-DIMGUI_IMPL_OPENGL_ES3" \
                 ..
           make
           
