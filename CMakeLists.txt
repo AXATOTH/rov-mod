@@ -10,6 +10,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/overlay
     ${CMAKE_SOURCE_DIR}/overlay/libs
     ${CMAKE_SOURCE_DIR}/overlay/libs/imgui
+    ${CMAKE_SOURCE_DIR}/overlay/libs/zygisk
 )
 
 # ImGui sources
@@ -42,14 +43,12 @@ find_library(GLESv2-lib GLESv2)
 find_library(EGL-lib EGL)
 
 if(NOT log-lib OR NOT android-lib OR NOT GLESv2-lib OR NOT EGL-lib)
-    message(FATAL_ERROR "Could not find Android system libraries. "
-            "Please ensure you are using the Android NDK toolchain file (-DCMAKE_TOOLCHAIN_FILE=...)")
+    message(FATAL_ERROR "Could not find Android system libraries.")
 endif()
 
 target_link_libraries(minimap
     ${log-lib}
     ${android-lib}
-    ${GLESv3-lib}
     ${GLESv2-lib}
     ${EGL-lib}
     -ldl
