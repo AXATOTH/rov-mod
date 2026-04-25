@@ -37,6 +37,7 @@ add_library(minimap SHARED ${SOURCES})
 
 find_library(log-lib log)
 find_library(android-lib android)
+find_library(GLESv3-lib GLESv3)
 find_library(GLESv2-lib GLESv2)
 find_library(EGL-lib EGL)
 
@@ -47,6 +48,7 @@ endif()
 target_link_libraries(minimap
     ${log-lib}
     ${android-lib}
+    ${GLESv3-lib}
     ${GLESv2-lib}
     ${EGL-lib}
     -ldl
