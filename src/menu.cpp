@@ -1,5 +1,6 @@
 #include "menu.h"
-#include "imgui.h"
+#include "hacks.h"
+#include "libs/imgui/imgui.h"
 #include <android/log.h>
 
 #define LOG_TAG "ModMenu"
@@ -87,9 +88,9 @@ void applyCustomStyle() {
     // Tabs
     c[ImGuiCol_Tab]                = ImVec4(0.14f, 0.14f, 0.18f, 0.85f);
     c[ImGuiCol_TabHovered]         = Colors::Accent;
-    c[ImGuiCol_TabSelected]        = ImVec4(0.25f, 0.15f, 0.35f, 1.00f);
-    c[ImGuiCol_TabDimmed]          = ImVec4(0.12f, 0.12f, 0.16f, 0.85f);
-    c[ImGuiCol_TabDimmedSelected]  = ImVec4(0.20f, 0.12f, 0.28f, 1.00f);
+    c[ImGuiCol_TabActive]        = ImVec4(0.25f, 0.15f, 0.35f, 1.00f);
+    c[ImGuiCol_TabUnfocused]          = ImVec4(0.12f, 0.12f, 0.16f, 0.85f);
+    c[ImGuiCol_TabUnfocusedActive]  = ImVec4(0.20f, 0.12f, 0.28f, 1.00f);
     
     // Scrollbar
     c[ImGuiCol_ScrollbarBg]        = ImVec4(0.08f, 0.08f, 0.10f, 0.60f);
