@@ -2,7 +2,7 @@
 #include <thread>
 #include <chrono>
 #include <cmath>
-#include <Dobby.h>
+#include <dobby.h>
 
 // Dobby hook helper
 template<typename T>
