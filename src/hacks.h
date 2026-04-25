@@ -4,6 +4,7 @@
 #include <vector>
 #include <mutex>
 #include <atomic>
+#include <thread>
 
 // Player info for ESP
 struct PlayerInfo {
