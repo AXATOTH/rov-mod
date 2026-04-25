@@ -3,6 +3,7 @@
 #include <chrono>
 #include <cmath>
 #include <dobby.h>
+#include <thread>
 
 // Dobby hook helper
 template<typename T>
