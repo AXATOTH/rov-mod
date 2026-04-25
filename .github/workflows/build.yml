@@ -11,6 +11,19 @@ jobs:
         with:
           ndk-version: r26c
 
+      - name: Build Dobby
+        run: |
+          git clone https://github.com/jmpews/Dobby.git
+          cd Dobby
+          mkdir build && cd build
+          cmake .. \
+                -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+                -DANDROID_ABI=arm64-v8a \
+                -DANDROID_PLATFORM=android-24 \
+                -DCMAKE_BUILD_TYPE=Release
+          make -j4
+          cp libdobby.a ../../overlay/libs/Dobby/
+
       - name: Build
         run: |
           mkdir build
