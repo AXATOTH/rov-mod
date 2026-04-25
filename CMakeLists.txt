@@ -3,6 +3,7 @@ project(minimap_esp)
 
 set(CMAKE_CXX_STANDARD 17)
 add_definitions(-DIMGUI_IMPL_OPENGL_ES3)
+add_definitions(-DIMGUI_IMPL_OPENGL_ES3)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -DIMGUI_IMPL_OPENGL_ES3 -fno-exceptions -fno-rtti -fvisibility=hidden")
 
 # Include paths
