@@ -24,8 +24,8 @@ jobs:
           
       - name: Create Zip
         run: |
-          mkdir -p output/zygisk/arm64-v8a
-          cp build/*.so output/zygisk/arm64-v8a/
+          mkdir -p output/zygisk
+          cp build/libminimap.so output/zygisk/arm64-v8a.so
           cp module.prop output/
           cd output && zip -r ../rov-esp-mod.zip .
           
