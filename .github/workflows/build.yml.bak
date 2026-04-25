@@ -1,0 +1,24 @@
+name: Build Mod
+    on: [push]
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+          - name: Build
+            run: |
+              mkdir build
+              cd build
+              cmake ..
+              make
+          - name: Create Zip
+            run: |
+              mkdir -p output/zygisk/arm64-v8a
+              cp build/*.so output/zygisk/arm64-v8a/
+              cp module.prop output/
+              cd output && zip -r ../rov-esp-mod.zip .
+          - name: Upload
+            uses: actions/upload-artifact@v3
+            with:
+              name: rov-esp-mod
+              path: rov-esp-mod.zip
