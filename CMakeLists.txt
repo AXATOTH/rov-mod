@@ -9,8 +9,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/overlay
     ${CMAKE_SOURCE_DIR}/overlay/libs
-    ${CMAKE_SOURCE_DIR}/overlay/libs/Dobby/include
-    ${CMAKE_SOURCE_DIR}/overlay/libs/Dobby/source
     ${CMAKE_SOURCE_DIR}/overlay/libs/imgui
 )
 
@@ -51,8 +49,5 @@ target_link_libraries(minimap
     ${android-lib}
     ${GLESv2-lib}
     ${EGL-lib}
-    # Using path directly to Dobby lib is risky, prefer finding it or linking it properly
-    # If libdobby.a exists, ensure the path is valid
-    "${CMAKE_SOURCE_DIR}/overlay/libs/Dobby/libdobby.a"
     -ldl
 )

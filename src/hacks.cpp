@@ -2,20 +2,6 @@
 #include <thread>
 #include <chrono>
 #include <cmath>
-#include <dobby.h>
-
-// Dobby hook helper
-template<typename T>
-bool do_hook(void* target, void* hook_fn, T* original) {
-    if (!target) return false;
-    int result = DobbyHook(target, hook_fn, (void**)original);
-    if (result == 0) {
-        LOGI("Hook installed at %p", target);
-        return true;
-    }
-    LOGE("Hook failed at %p (error: %d)", target, result);
-    return false;
-}
 
 void Hacks::init() {
     if (initialized) return;
