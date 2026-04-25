@@ -1,8 +1,8 @@
 #include "overlay.h"
 #include "menu.h"
 #include "imgui.h"
-#include "imgui_impl_android.h"
-#include "imgui_impl_opengl3.h"
+#include "libs/imgui/imgui_impl_android.h"
+#include "libs/imgui/imgui_impl_opengl3.h"
 #include <android/log.h>
 #include <chrono>
 
