@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(minimap_esp)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -fno-exceptions -fno-rtti -fvisibility=hidden -DIMGUI_IMPL_OPENGL_ES3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -fno-exceptions -fno-rtti")
 
 # Include paths
 include_directories(
@@ -10,6 +10,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/overlay
     ${CMAKE_SOURCE_DIR}/overlay/libs
     ${CMAKE_SOURCE_DIR}/overlay/libs/imgui
+    ${CMAKE_SOURCE_DIR}/overlay/libs/zygisk
 )
 
 # ImGui sources
@@ -34,20 +35,19 @@ set(SOURCES
 
 add_library(minimap SHARED ${SOURCES})
 
-# Find libraries
 find_library(log-lib log)
 find_library(android-lib android)
+find_library(GLESv2-lib GLESv2)
 find_library(EGL-lib EGL)
 
-if(NOT log-lib OR NOT android-lib OR NOT EGL-lib)
-    message(FATAL_ERROR "Could not find Android system libraries. "
-            "Please ensure you are using the Android NDK toolchain file (-DCMAKE_TOOLCHAIN_FILE=...)")
+if(NOT log-lib OR NOT android-lib OR NOT GLESv2-lib OR NOT EGL-lib)
+    message(FATAL_ERROR "Could not find Android system libraries.")
 endif()
 
 target_link_libraries(minimap
     ${log-lib}
     ${android-lib}
-    -lGLESv3
+    ${GLESv2-lib}
     ${EGL-lib}
     -ldl
 )
