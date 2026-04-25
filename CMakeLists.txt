@@ -18,6 +18,8 @@ set(IMGUI_SOURCES
     overlay/libs/imgui/imgui_draw.cpp
     overlay/libs/imgui/imgui_tables.cpp
     overlay/libs/imgui/imgui_widgets.cpp
+    overlay/libs/imgui/imgui_impl_android.cpp
+    overlay/libs/imgui/imgui_impl_opengl3.cpp
 )
 
 # Main sources
